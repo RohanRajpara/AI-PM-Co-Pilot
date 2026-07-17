@@ -29,9 +29,6 @@ from prompts import (
     SAMPLE_FEEDBACK,
 )
 
-# ---------------------------------------------------------------------------
-# CONFIG
-# ---------------------------------------------------------------------------
 MODEL = "openai/gpt-4o-mini"
 
 st.set_page_config(page_title="AI Product Manager Copilot", page_icon="🧠", layout="wide")
@@ -42,9 +39,6 @@ SEVERITY_COLORS = {
     "Low": {"bg": "#04342C", "text": "#5DCAA5"},
 }
 
-# ---------------------------------------------------------------------------
-# STYLING — modern SaaS dashboard look
-# ---------------------------------------------------------------------------
 st.markdown(
     """
     <style>
@@ -113,9 +107,6 @@ st.markdown(
 )
 
 
-# ---------------------------------------------------------------------------
-# CLIENT
-# ---------------------------------------------------------------------------
 def get_client():
     api_key = os.environ.get("OPENROUTER_API_KEY")
     if not api_key:
@@ -217,12 +208,8 @@ def save_state():
         with open(STATE_FILE, "w", encoding="utf-8") as f:
             json.dump(data, f)
     except OSError:
-        pass  # non-fatal — worst case, this run's changes aren't persisted
+        pass 
 
-
-# ---------------------------------------------------------------------------
-# SESSION STATE INIT
-# ---------------------------------------------------------------------------
 _saved = load_state()
 
 defaults = {
@@ -252,7 +239,7 @@ if not os.environ.get("OPENROUTER_API_KEY"):
         icon="⚠️",
     )
 
-# Sidebar — session history
+
 with st.sidebar:
     st.markdown("### Session history")
     if st.session_state.history:
@@ -266,9 +253,6 @@ tab_insights, tab_feedback, tab_prd, tab_rice = st.tabs(
     ["🏠 Insights Dashboard", "💬 Feedback Analyzer", "📄 PRD Generator", "📊 RICE Prioritization"]
 )
 
-# ---------------------------------------------------------------------------
-# TAB 1: INSIGHTS DASHBOARD
-# ---------------------------------------------------------------------------
 with tab_insights:
     st.subheader("Session overview")
 
@@ -326,9 +310,6 @@ with tab_insights:
             icon="👋",
         )
 
-# ---------------------------------------------------------------------------
-# TAB 2: FEEDBACK ANALYZER
-# ---------------------------------------------------------------------------
 with tab_feedback:
     st.subheader("Paste customer feedback here")
     st.caption("One piece of feedback per line — reviews, interview notes, support tickets, etc.")
@@ -386,6 +367,7 @@ with tab_feedback:
                 </div>""",
                 unsafe_allow_html=True,
             )
+            
 
         if st.session_state.themes:
             st.markdown("### Top 3 recurring themes")
