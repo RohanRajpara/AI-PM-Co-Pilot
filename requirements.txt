@@ -1,0 +1,7 @@
+streamlit>=1.38
+openai>=1.40
+pandas>=2.2
+python-dotenv>=1.0
+plotly>=5.22
+markdown>=3.6
+xhtml2pdf>=0.2.16
